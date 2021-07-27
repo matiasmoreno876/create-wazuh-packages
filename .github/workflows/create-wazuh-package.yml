@@ -25,7 +25,6 @@ jobs:
         ref: '4.2'
         path: wazuh-packages
      - name: Step 03 - Building package
-       if: ${{ env.RUN_TEST == 'true' }}
        run: |
         cd $GITHUB_WORKSPACE/wazuh-packages/wazuhapp
         echo fixing command...
