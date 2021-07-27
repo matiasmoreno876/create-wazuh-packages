@@ -31,9 +31,11 @@ jobs:
         sed -i -e 's/'\|' cut -d \"\/\" \-f2//g' ./generate_wazuh_app.sh 
         echo run command...
         ./generate_wazuh_app.sh -b ${{ env.WAZUH_HEAD_BRANCH }} -s $GITHUB_WORKSPACE/packages -r 1
+        cd $GITHUB_WORKSPACE/packages
+        ls -a
      - name: Archive packages
        uses: actions/upload-artifact@v2
        with:
         name: wazuh-packages
-        path: $GITHUB_WORKSPACE/packages/*.zip
+        path: $GITHUB_WORKSPACE/packages/*
         
