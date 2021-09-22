@@ -1,0 +1,39 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: create-wazuh-packages-4.2.2_7.14.2
+
+on:
+  push:
+    branches:
+      - 'main'  
+jobs:
+  setup-wazuh-kibana-app:
+    name: Run setup environment wazuh kibana app
+    runs-on: ubuntu-18.04
+    steps:
+     - name: Step 01 - Set up environment variables
+       run: |
+        echo "WAZUH_HEAD_BRANCH=feature/create-package-4.2.2-7.14.2" >> $GITHUB_ENV
+        mkdir packages
+     - name: Step 02 - Download Project wazuh-packages 
+       uses: actions/checkout@v2
+       with:
+        repository: wazuh/wazuh-packages
+        ref: 'wazuhapp/update-build-script-kibana-7.11'
+        path: wazuh-packages
+     - name: Step 03 - Building package
+       run: |
+        cd $GITHUB_WORKSPACE/wazuh-packages/wazuhapp
+        echo fixing command...
+        sed -i -e 's/'\|' cut -d \"\/\" \-f2//g' ./generate_wazuh_app.sh 
+        echo run command...
+        ./generate_wazuh_app.sh -b ${{ env.WAZUH_HEAD_BRANCH }} -s $GITHUB_WORKSPACE/packages -r 1
+        cd $GITHUB_WORKSPACE/packages
+        ls -a
+     - name: Archive packages
+       uses: actions/upload-artifact@v2
+       with:
+        name: wazuh-packages
+        path: packages/*
+        
