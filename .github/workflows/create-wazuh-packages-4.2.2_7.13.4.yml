@@ -20,7 +20,7 @@ jobs:
        uses: actions/checkout@v2
        with:
         repository: wazuh/wazuh-packages
-        ref: 'wazuhapp/update-build-script-kibana-7.11'
+        ref: 'v4.2.2'
         path: wazuh-packages
      - name: Step 03 - Building package
        run: |
