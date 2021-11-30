@@ -4,9 +4,20 @@
 name: create-wazuh-packages
 
 on:
-  push:
-    branches:
-      - 'main'  
+  workflow_dispatch:
+    inputs:
+      new_version:
+        description: 'New Version'
+        required: true
+      username:
+        description: 'Username'
+        required: true
+      password:
+        description: 'Password'
+        required: true        
+      email:
+        description: 'Email'
+        required: true 
 jobs:
   setup-wazuh-kibana-app:
     name: Run setup environment wazuh kibana app
