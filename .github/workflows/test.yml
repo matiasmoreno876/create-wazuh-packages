@@ -37,10 +37,10 @@ jobs:
         ls -a
      - name: Unzip package
        run: |
-       PACKAGE_NAME=`ls ./packages/*.zip`
-       echo "PACKAGE_NAME=$(ls ./packages/*.zip)" >> $GITHUB_ENV
-       7z x ./$PACKAGE_NAME.zip
-       rm -rf $PACKAGE_NAME.zip
+        PACKAGE_NAME=`ls ./packages/*.zip`
+        echo "PACKAGE_NAME=$(ls ./packages/*.zip)" >> $GITHUB_ENV
+        7z x ./$PACKAGE_NAME.zip
+        rm -rf $PACKAGE_NAME.zip
      - name: Archive packages
        uses: actions/upload-artifact@v2
        with:
