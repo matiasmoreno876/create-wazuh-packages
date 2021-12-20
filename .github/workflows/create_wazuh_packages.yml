@@ -12,6 +12,7 @@ on:
       wazuh_packages_branch:
         description: 'Branch Wazuh Packages'
         required: true
+        default: 'master'
 jobs:
   setup-wazuh-kibana-app:
     name: Run setup environment wazuh kibana app
