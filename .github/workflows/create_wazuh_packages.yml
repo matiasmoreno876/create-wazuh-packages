@@ -29,7 +29,7 @@ jobs:
         path: wazuh-packages
      - name: Step 03 - Building package
        run: |
-        cd $GITHUB_WORKSPACE/wazuh-packages/wazuhapp
+        cd $GITHUB_WORKSPACE/wazuh-packages/wazuhapp/kibana
         echo fixing command...
         sed -i -e 's/'\|' cut -d \"\/\" \-f2//g' ./generate_wazuh_app.sh 
         echo run command...
