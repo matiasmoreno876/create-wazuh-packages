@@ -35,6 +35,8 @@ jobs:
         echo "[info] platform: $plugin_platform_directory"
         echo "[info] changing the directory to $GITHUB_WORKSPACE/wazuh-packages/wazuhapp/$plugin_platform_directory"
         cd $GITHUB_WORKSPACE/wazuh-packages/wazuhapp/$plugin_platform_directory
+        echo "[info] fixing command..."
+        sed -i -e 's/'\|' cut -d \"\/\" \-f2//g' ./generate_wazuh_app.sh 
         echo "[info] running script to generate the plugin package"
         ./generate_wazuh_app.sh -b ${{ github.event.inputs.wazuh_kibana_app_branch }} -s $GITHUB_WORKSPACE/packages -r 1
      - name: Archive packages
